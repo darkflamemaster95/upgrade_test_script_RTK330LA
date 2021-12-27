@@ -328,7 +328,7 @@ class RTKProviderBase(OpenDeviceBase):
                         target=self.thread_debug_port_receiver, args=(self.rtk_log_file_name,))
                     thead.start()
 
-            self.save_device_info()
+            #self.save_device_info()
         except Exception as ex:
             if self.debug_serial_port is not None:
                 if self.debug_serial_port.isOpen():
@@ -735,7 +735,7 @@ class RTKProviderBase(OpenDeviceBase):
             thead = threading.Thread(target=self.ntrip_client_thread)
             thead.start()
 
-        self.save_device_info()
+        #self.save_device_info()
 
     def get_operation_status(self):
         if self.is_logging:

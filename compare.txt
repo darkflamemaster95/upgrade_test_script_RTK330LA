@@ -1,0 +1,1 @@
+RTK_INS App v24.04, RTK_INS Bootloader v01.00.09
