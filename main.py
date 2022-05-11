@@ -51,7 +51,7 @@ def handle_discovered(device_provider):
 
 def get_firmware(cnt):
     # fw_list = ["./RTK330LA_24.00.19re.bin", "./RTK330LA_24.03.bin"]
-    fw_list = ["./RTK330LA_FW_v24.04.bin", "./RTK330LA_RTK_INS_App_v24.01.24t2.bin"]
+    fw_list = ["./RTK330LA_24.00.19re.bin", "./RTK330LA_24.05.bin"]
     return fw_list[cnt % 2]
 
 
