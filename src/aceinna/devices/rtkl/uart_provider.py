@@ -112,8 +112,16 @@ class Provider(RTKProviderBase):
             return ins_upgrade_worker
 
         if rule == 'sdk':
+            logf = open('./compare.txt')
+            app_info = logf.read()
+            app_ver = app_info.split(' ')[2]
+            logf.close()
+            if app_ver == 'v24.05.12':
+                use_new_fw = False
+            else:
+                use_new_fw = True
             sdk_upgrade_worker = SDK9100UpgradeWorker(
-                self.communicator, self.bootloader_baudrate, content)
+                self.communicator, self.bootloader_baudrate, content, use_new_fw)
             return sdk_upgrade_worker
 
     # command list
