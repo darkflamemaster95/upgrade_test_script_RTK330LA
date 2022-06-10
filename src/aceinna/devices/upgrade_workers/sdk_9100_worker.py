@@ -1999,14 +1999,12 @@ class SDKUpgradeWorker(UpgradeWorkerBase):
         if self._is_stopped:
             return False
 
-        ### 1---manual to change 
-        if self.is_convert == False:
-            boot_file = XLDR_TESEO5_BOOTLOADER_CUT2
-        elif self.is_convert == True:
-            boot_file = XLDR_TESEO5_BOOTLOADER_CUT2_new
+        # if self.is_convert == False:
+        #     boot_file = XLDR_TESEO5_BOOTLOADER_CUT2
+        # elif self.is_convert == True:
+        #     boot_file = XLDR_TESEO5_BOOTLOADER_CUT2_new
 
-        # boot_file = XLDR_TESEO5_BOOTLOADER_CUT2
-        ###
+        boot_file = XLDR_TESEO5_BOOTLOADER_CUT2
 
         boot_size = len(boot_file)
         boot_size_hex = []
@@ -2022,18 +2020,16 @@ class SDKUpgradeWorker(UpgradeWorkerBase):
         crc_val_boot_hex = []
         crc_val_boot_hex = self.get_list_from_int(crc_val_boot)
 
-        ### 2---manual to change
-        if self.is_convert == False:
-            boot_part1 = boot_file[0:5120]
-            boot_part2 = boot_file[5120:]
-        elif self.is_convert == True:
-            boot_part1 = boot_file[0:5120]
-            boot_part2 = boot_file[5120:10240]
-            boot_part3 = boot_file[10240:]
+        # if self.is_convert == False:
+        #     boot_part1 = boot_file[0:5120]
+        #     boot_part2 = boot_file[5120:]
+        # elif self.is_convert == True:
+        #     boot_part1 = boot_file[0:5120]
+        #     boot_part2 = boot_file[5120:10240]
+        #     boot_part3 = boot_file[10240:]
 
-        # boot_part1 = boot_file[0:5120]
-        # boot_part2 = boot_file[5120:]
-        ###
+        boot_part1 = boot_file[0:5120]
+        boot_part2 = boot_file[5120:]
 
         preamble = [0xf4, 0x01, 0xd5, 0xbc, 0x73, 0x40, 0x98,
                     0x83, 0x04, 0x01, 0xff, 0x00, 0x00, 0x00, 0x00, 0x00]
@@ -2041,19 +2037,16 @@ class SDKUpgradeWorker(UpgradeWorkerBase):
         self._uart.write(crc_val_boot_hex)
         self._uart.write(boot_size_hex)
         self._uart.write(entry_hex)
+        # if self.is_convert == False:
+        #     self._uart.write(boot_part1)
+        #     self._uart.write(boot_part2)
+        # elif self.is_convert == True:
+        #     self._uart.write(boot_part1)
+        #     self._uart.write(boot_part2)
+        #     self._uart.write(boot_part3)
 
-        # 3---manual to change
-        if self.is_convert == False:
-            self._uart.write(boot_part1)
-            self._uart.write(boot_part2)
-        elif self.is_convert == True:
-            self._uart.write(boot_part1)
-            self._uart.write(boot_part2)
-            self._uart.write(boot_part3)
-
-        # self._uart.write(boot_part1)
-        # self._uart.write(boot_part2)
-        ###
+        self._uart.write(boot_part1)
+        self._uart.write(boot_part2)
 
         return self.read_until(0xCC, 100, 1)
 

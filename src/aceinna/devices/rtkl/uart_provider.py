@@ -116,7 +116,7 @@ class Provider(RTKProviderBase):
             app_info = logf.read()
             app_ver = app_info.split(' ')[2]
             logf.close()
-            if app_ver == 'v24.05.12':
+            if app_ver == 'v24.05re,':
                 use_new_fw = False
             else:
                 use_new_fw = True
