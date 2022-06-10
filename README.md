@@ -5,7 +5,7 @@ $ pip install -r requirments.txt
 $ sudo apt-get install python3-tk
 
 ## run
-$ python ./main.py 120(turns)
+$ python3 ./main.py 120(turns)
 
 
 
