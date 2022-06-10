@@ -37,6 +37,7 @@ driver = Driver(WebserverArgs(
     interface=INTERFACES.UART
 ))
 
+
 def get_info():
     logf = open('./compare.txt')
     app_info = logf.read()
@@ -45,6 +46,7 @@ def get_info():
     app_ver = app_info.split(' ')[2]
     return app_ver
 
+
 def handle_discovered(device_provider):
     global turns
     # turns = input('Input turns:')
@@ -52,15 +54,16 @@ def handle_discovered(device_provider):
 
 def get_firmware():
 
-    fw_list = ["./RTK330LA_24.05.bin", "./RTK330LA_24.05.12.bin"]
+    fw_list = ["./RTK330LA_24.05.bin", "./RTK330LA_24.05re.bin"]
     app_ver = get_info()
     # print(app_ver)
-    if app_ver == 'v24.05.12':
+    if app_ver == 'v24.05re,':
         fw_file = fw_list[0]
     else:
         fw_file = fw_list[1]
     return fw_file
     # return fw_list[cnt % 2]
+
 
 def do_upgrade():
     global loop_upgrade_cnt
@@ -70,6 +73,7 @@ def do_upgrade():
         kill_app()
         return
     driver.execute('upgrade_framework', get_firmware())
+
 
 def handle_upgrade_finished():
     global loop_upgrade_cnt
@@ -82,6 +86,7 @@ def handle_upgrade_finished():
     os.fsync(test_log)
 
     do_upgrade()
+
 
 def handle_upgrade_fail(code, message):
     global loop_upgrade_cnt
@@ -96,11 +101,13 @@ def handle_upgrade_fail(code, message):
 
     do_upgrade()
 
+
 def kill_app():
     '''Kill main thread
     '''
     os.kill(os.getpid(), signal.SIGTERM)
     sys.exit()
+
 
 @handle_application_exception
 def simple_start():
@@ -108,6 +115,7 @@ def simple_start():
     driver.on(DriverEvents.UpgradeFinished, handle_upgrade_finished)
     driver.on(DriverEvents.UpgradeFail, handle_upgrade_fail)
     driver.detect()
+
 
 if __name__ == '__main__':
     turns = int(sys.argv[1])
