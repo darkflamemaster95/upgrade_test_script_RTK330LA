@@ -2004,7 +2004,7 @@ class SDKUpgradeWorker(UpgradeWorkerBase):
         # elif self.is_convert == True:
         #     boot_file = XLDR_TESEO5_BOOTLOADER_CUT2_new
 
-        boot_file = XLDR_TESEO5_BOOTLOADER_CUT2
+        boot_file = XLDR_TESEO5_BOOTLOADER_CUT2_new
 
         boot_size = len(boot_file)
         boot_size_hex = []
@@ -2029,7 +2029,8 @@ class SDKUpgradeWorker(UpgradeWorkerBase):
         #     boot_part3 = boot_file[10240:]
 
         boot_part1 = boot_file[0:5120]
-        boot_part2 = boot_file[5120:]
+        boot_part2 = boot_file[5120:10240]
+        boot_part3 = boot_file[10240:]
 
         preamble = [0xf4, 0x01, 0xd5, 0xbc, 0x73, 0x40, 0x98,
                     0x83, 0x04, 0x01, 0xff, 0x00, 0x00, 0x00, 0x00, 0x00]
