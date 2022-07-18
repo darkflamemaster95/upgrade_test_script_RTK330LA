@@ -54,7 +54,7 @@ def handle_discovered(device_provider):
 
 def get_firmware():
 
-    fw_list = ["./RTK330LA_24.04.bin", "./RTK330LA_24.05re.bin"]
+    fw_list = ["./RTK330LA_24.05re.bin", "./RTK330LA_24.05.14.bin"]
     app_ver = get_info()
     # print(app_ver)
     if app_ver == 'v24.05re,':
