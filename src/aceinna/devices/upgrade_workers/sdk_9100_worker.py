@@ -2048,6 +2048,7 @@ class SDKUpgradeWorker(UpgradeWorkerBase):
 
         self._uart.write(boot_part1)
         self._uart.write(boot_part2)
+        self._uart.write(boot_part3)
 
         return self.read_until(0xCC, 100, 1)
 
