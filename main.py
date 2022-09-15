@@ -65,7 +65,7 @@ def get_firmware():
     fw_list = [fw_path_upgrade, fw_path_rollback]
     app_ver = get_info()
     # print(app_ver)
-    if app_ver == fw_flag:
+    if app_ver != fw_flag:
         fw_file = fw_list[0]
     else:
         fw_file = fw_list[1]
