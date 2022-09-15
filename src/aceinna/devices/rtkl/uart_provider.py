@@ -115,13 +115,19 @@ class Provider(RTKProviderBase):
             logf = open('./compare.txt')
             app_info = logf.read()
             app_ver = app_info.split(' ')[2][1:9]
-            app_ver = app_ver.replace('.', '')
+            app_ver_num = int(app_ver.replace('.', ''))
             # print(app_ver)
             logf.close()
-            if app_ver >= 240512:
-                use_new_fw = True
-            else:
-                use_new_fw = False
+            if len(app_ver) == 6:
+                if app_ver_num >= 240512:
+                    use_new_fw = True
+                else:
+                    use_new_fw = False
+            elif len(app_ver) == 4:
+                if app_ver_num >= 2406:
+                    use_new_fw = True
+                else:
+                    use_new_fw = False
             sdk_upgrade_worker = SDK9100UpgradeWorker(
                 self.communicator, self.bootloader_baudrate, content, use_new_fw)
             return sdk_upgrade_worker
