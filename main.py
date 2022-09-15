@@ -57,6 +57,7 @@ def get_firmware():
     global fw_path_2
     global fw_path_upgrade
     global fw_path_rollback
+    global fw_flag
 
     fw_path_upgrade = fw_path_1
     fw_path_rollback = fw_path_2
@@ -64,7 +65,7 @@ def get_firmware():
     fw_list = [fw_path_upgrade, fw_path_rollback]
     app_ver = get_info()
     # print(app_ver)
-    if app_ver == 'v24.05.12':
+    if app_ver == fw_flag:
         fw_file = fw_list[0]
     else:
         fw_file = fw_list[1]
@@ -122,6 +123,10 @@ if __name__ == '__main__':
     turns = int(sys.argv[1])
     fw_path_1 = input('please input the path of upgrade firmware:\n')
     fw_path_2 = input('please input the path of rollback firmware:\n')
+    a_pos = fw_path_1.find('v24')
+    b_pos = fw_path_1.find('.bin')
+    fw_flag = fw_path_1[a_pos:b_pos]
+
     simple_start()
 
     while True:
