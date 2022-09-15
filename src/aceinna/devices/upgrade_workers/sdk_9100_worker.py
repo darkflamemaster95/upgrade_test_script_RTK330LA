@@ -2222,7 +2222,7 @@ class SDKUpgradeWorker(UpgradeWorkerBase):
         if not self.send_sync():
             return self._raise_error('Sync failed')
         
-        if self.is_convert == False:
+        if self.is_convert == True:
 
             if not self.send_change_baud_cmd():
                 return self._raise_error('Prepare baudrate change command failed')
