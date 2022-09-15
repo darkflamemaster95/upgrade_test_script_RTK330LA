@@ -115,6 +115,7 @@ class Provider(RTKProviderBase):
             logf = open('./compare.txt')
             app_info = logf.read()
             app_ver = app_info.split(' ')[2]
+            print(app_ver)
             logf.close()
             if app_ver == 'v24.05.12':
                 use_new_fw = False
